@@ -1,7 +1,5 @@
 import "../Dashboard/Dashboard.css";
-import profilePic from "../Images/profile-pic.png"
-import feedImage from "../Images/feed-image-1.png"
-import { useEffect,useContext, useState } from "react";
+import { useEffect, useState } from "react";
 // import { UserContext } from "../UserContext/UserContext";
 import {  useNavigate } from "react-router-dom";
 
@@ -9,11 +7,12 @@ import {  useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import axios from "axios";
 const Dashboard = () => {
+
   const navigate = useNavigate();
 
 
-  // const { data, setData } = useContext(UserContext);
   const [posts,setPosts]=useState([])
+
   const userId = localStorage.getItem("userId");
 
   const checkProfile=(userId)=>{
@@ -21,9 +20,9 @@ const Dashboard = () => {
   }
 const fetchAllPosts=async ()=>{
 
-
              const response= await axios.get(`http://localhost:5000/allPosts/${userId}`)
-             setPosts(response?.data)
+             const allData=response.data.combinePosts;
+            setPosts(allData)
 }
 
   useEffect(()=>{
@@ -33,28 +32,28 @@ const fetchAllPosts=async ()=>{
   },[])
 
 
-
   return (
     <>
-    <div class="main-content">
+    <div class="DashboardMain-content">
     
             {
               posts.map((item)=>(
-                <div>
+                item.friendsPosts.map((i)=>(
+                  item.friendprofile.map((ii)=>(
+                    <div>
                   <div class="postcard">
                 <div class="postcard-header">
-                  <img src={profilePic} alt="Profile Picture" class="profile-picture" onClick={()=>checkProfile(item.id)}/>
+                  <img src={ii.imageUrl} alt="Profile Picture" class="profile-picture" onClick={()=>checkProfile(i.id)}/>
                   <div class="postcard-info">
-                    <h2 class="name" >{item.name} added a new Photo</h2>
+                    <h2 class="name" >{i.name} added a new Photo</h2>
                     <p class="date">28 May 2023</p>
                   </div>
                 </div>
                 <div class="postcard-content">
                   <p class="message">
-                    Hello, friends! Just wanted to share this beautiful photo from my
-                    recent trip. #Travel #Adventure
+                    {i.mindThoughts}
                   </p>
-                  <img src={item.imageUrl} alt="Photo" class="photo" />
+                  <img src={i.imageUrl} alt="Photo" class="photo" />
                 </div>
                 <div class="postcard-footer">
                   <div class="likes">
@@ -70,6 +69,11 @@ const fetchAllPosts=async ()=>{
                 </div>
               </div>
               </div>
+
+                  ))
+
+                ))
+                
               ))
             }
     

@@ -50,7 +50,7 @@ const CheckingOtp=()=>{
           </div>
         </div>
         <div className="child2">
-          <h1 className="RecoveryHeading">Account Recovery</h1>
+          <h1 className="HeadingTitle">Account Recovery</h1>
           <div className="inputBox">
             <input
               type="text"

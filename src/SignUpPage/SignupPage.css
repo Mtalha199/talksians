@@ -34,9 +34,12 @@
 
 }
 .headinglogo{
+    text-decoration: none;
     color: #A020F0;
 }
-
+.headinglogo:hover{
+color: none;
+}
 .SignUpchild1 {
     display: flex;
     height: 100vh;
@@ -88,9 +91,11 @@
 
 
 
-.RecoveryHeading {
+.HeadingTitle {
+    text-decoration: none;
     color: #A020F0;
     font-family: myFirstFont;
+    font-size: 35px;
 }
 
 .inputBox {
@@ -141,15 +146,19 @@ a {
 }
 
 a:hover {
-    color: #55455f;
+    color:  #A020F0;
+    
 }
-
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
 .forgetPassword {
     font-weight: 200;
     font-size: small;
 }
 
-.btn {
+.Loginbtn {
     background-color: #A020F0;
     width: 370px;
     padding: 10px;

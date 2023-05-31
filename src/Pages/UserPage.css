@@ -1,9 +1,11 @@
-
+.modal-div{
+    border: 1px solid salmon;
+}
 .pages.likecard-container{
     border: 1px solid red;
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    width: 800px;
     height: 550px;
     overflow: auto;
 }
@@ -39,8 +41,8 @@
     height: 55px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: space-between;
+        align-items: center;
     gap: 30px;
 
 }
@@ -87,7 +89,7 @@
 }
 
 .pages  .PageName{
-    border: 1px solid red;
+    padding-left: 5rem;
    
 }
 

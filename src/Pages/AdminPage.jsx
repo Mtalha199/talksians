@@ -1,88 +1,93 @@
+
+import CreatePageModal from "../CreatePageModal/CreatePageModal";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useState } from "react";
-import { ToastContainer,toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 const AdminPage = () => {
-    const initialValues = {
-      pgName: "",
-      Image: null,
-      coverImage: null,
-    };
-    const [pages, setPages] = useState(initialValues);
+  const navigate = useNavigate();
+
+    const [pages, setPages] = useState([]);
   
-    const handleChange = (e) => {
-        if(e.target.name === "Image")
-        {
-            const file = e.target.files[0];
-            setPages({ ...pages, Image: file });
-          }
-          else if(e.target.name === "coverImage")
-          {
-            const file = e.target.files[0];
-            setPages({ ...pages, coverImage: file });
-          }
-          else {
-            const { name, value } = e.target;
-            setPages((prev) => ({
-              ...prev,
-              [name]: value,
-            }));
-          }
-    }
-    console.log(pages)
-  
-    const updatedData={
-        pagename:pages.pgName,
-        Image:pages.Image,
-        coverImage:pages.coverImage,
-    }
-    console.log(updatedData)
-    const postPageData=async()=>{
-        toast("Creating Your Page")
-        // alert("udfys")
-        await axios.post("http://localhost:5000/createPage",updatedData,{
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }).then((res)=>{
-            console.log(res.data)
-            toast.success(res.data)
-        }).catch((err)=>{
-            console.log(err)
+    const fetchAllPages = async () => {
+      axios
+        .get("http://localhost:5000/allPages")
+        .then((res) => {
+          // console.log(res.data);
+          setPages(res?.data);
         })
+        .catch((e) => {
+          console.log(e);
+        });
+    };
+  
+    useEffect(() => {
+      fetchAllPages();
+    }, []);
 
 
-}
-    return (
-      <>
-        <input
-          type="text"
-          name="pgName"
-          value={pages.pgName}
-          onChange={handleChange}
-        />
-        <br />
-        <input
-          type="file"
-          name="Image"
-          accept="image/*"
-          onChange={handleChange}
-        />
-        <br />
-        <input
-          type="file"
-          name="coverImage"
-          accept="image/*"
-          onChange={handleChange}
-        />
+    const delPage=(pageId)=>{
+      axios.post(`http://localhost:5000/deletePage/${pageId}`).then((res)=>{
+        toast.success(res.data)
+        window.location.reload();
+      }).catch((e)=>{
+        toast.error(e.data)
+        
+      })
 
+      
+      
+    }
+    const showPage=(pageId)=>{
+      // console.log(pageId)
+     return navigate(`/dashboard/page/${pageId}`)
 
-        <button onClick={postPageData}>Post Data</button>
+    }
+   return(
+    <>
 
-        <ToastContainer />
+  <div className="modal-div">
+        <CreatePageModal/>
 
+        </div>
+        <div className="likecard-container pages">
+        {pages.map((item) => (
+          <div className="likeCardBox">
+            <div className="UpperBox">
+              <div className="cover-box">
+                <img
+                  src={item.coverImageUrl}
+                  alt="Cover-Photo"
+                  className="cover-image"
+                  onClick=""
+                />
+              </div>
+            </div>
+            <div className="circle-container">
+              <img
+                src={item.profileImageUrl}
+                alt="Circle"
+                className="circle-image"
+                onClick={()=>showPage(item._id)}
+              />
+              
+            </div>
+            <div className="lowerBox">
+              <div className="PageName">
+                <h5>{item.pagename}</h5>
+              </div>
+              <div className="BtnDiv">
+                <button className="like-btn">Like</button>
+                <button onClick={()=>delPage(item._id)}> del</button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+        
       </>
     );
   };

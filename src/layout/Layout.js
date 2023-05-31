@@ -8,14 +8,14 @@ const Layout = () => {
   return (
     <>
       <TopNavbar />
-      <div class="container">
+      <div class="DashboardLayout-container">
         <LeftSideNavbar />
         <Outlet />
         <RigtSideNavbar />
 
         
       </div>
-      <div class="footer">
+      <div class="Dashboard-footer">
         <p>Copyright 2023-UIIT</p>
       </div>
     </>

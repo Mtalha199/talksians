@@ -58,7 +58,7 @@ function Loginpage() {
           </div>
 
           <div className="child2">
-            <h1 className="RecoveryHeading">Login Into Your Account</h1>
+            <h1 className="HeadingTitle">Login Into Your Account</h1>
             <div className="inputBox">
               <input
                 type="text"
@@ -80,10 +80,9 @@ function Loginpage() {
               />
               <span>Password </span>
             </div>
-            <button className="btn" onClick={() => login()}>
+            <button className="Loginbtn" onClick={() => login()}>
               Login
             </button>
-             <Link to="/login/admin"> For Admin Only</Link> 
             <Link to="/signuppage">Dont have account ? Register</Link>
             <Link to="/checkingEmail">Forget Password ?</Link>
           </div>

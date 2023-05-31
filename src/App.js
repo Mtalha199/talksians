@@ -17,6 +17,8 @@ import MyProvider from "./UserContext/MyProvider";
 import AllFriend from "./profile/AllFriend";
 import Pages from "./Pages/Pages";
 import DashboardToProfile from "./profile/DashboardToProfile";
+import PagesToPage from "./Pages/PagesToPage";
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   return (
@@ -33,6 +35,7 @@ function App() {
   <Route path="dashboard" index  element={<Dashboard />}></Route>
   <Route path="dashboard/userprofile/:userId" element={<DashboardToProfile />}></Route>
   <Route path="pages" element={<Pages />}></Route>
+  <Route path="dashboard/page/:pageId" element={<PagesToPage />}></Route>
   <Route path="timeline" element={<Timeline />}></Route>
   <Route path="friends" element={<Friends />}></Route>
   <Route path="friendRequests" element={<ResponseRequest />}></Route>

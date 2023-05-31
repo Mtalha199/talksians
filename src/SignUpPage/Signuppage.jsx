@@ -88,7 +88,7 @@ function Signuppage() {
         </div>
       </div>
       <div className="child2">
-        <h1 className="RecoveryHeading">Register Your Account</h1>
+        <p className="HeadingTitle">Register Your Account</p>
         <div className="inputBox">
           <input
             type="text"
@@ -167,7 +167,7 @@ function Signuppage() {
           <span>Confirm Password </span>
           {/* {error? <><p style={{color:'red'}}>{toast.error(error) }</p></>:<></>} */}
         </div>
-        <button className="btn" type="button" onClick={(e) => handleSubmit(e)}>
+        <button className="Loginbtn" type="button" onClick={(e) => handleSubmit(e)}>
           Register
         </button>
         <Link to="/login"> Do you have an account ? Login</Link>

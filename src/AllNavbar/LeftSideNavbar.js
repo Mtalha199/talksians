@@ -23,8 +23,8 @@ const LeftSideNavbar = () => {
   };
   return (
     <>
-      <div className="left-sidebar">
-        <div className="imp-links">
+      <div className="Dashboardleft-sidebar">
+        <div className="LeftNavBar-imp-links">
           <Link to="timeline">
             <img src={wideScreen} />
             Timeline

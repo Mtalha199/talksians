@@ -44,7 +44,7 @@ const CheckingEmail = () => {
           </div>
         </div>
         <div className="child2">
-          <h1 className="RecoveryHeading">Account Recovery</h1>
+          <h1 className="HeadingTitle">Account Recovery</h1>
           <div className="inputBox">
             <input
               type="text"
@@ -56,7 +56,7 @@ const CheckingEmail = () => {
             <span>Email</span>
           </div>
           {/* <Link to='/forgottorecovery'> */}
-          <button className="btn" type="submit" onClick={submit}>
+          <button className="Loginbtn" type="submit" onClick={submit}>
             Verify
           </button>
           {/* </Link> */}
